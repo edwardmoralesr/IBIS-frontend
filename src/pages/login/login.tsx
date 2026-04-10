@@ -13,6 +13,7 @@ type Student = {
 
 
 export default function Login() {
+  const year = new Date().getFullYear();
   const [loaded, setLoaded] = useState(false);
   const [active, setActive] = useState(false);
   const [value, setValue] = useState<number>(0);
@@ -137,9 +138,9 @@ export default function Login() {
             ¿Olvidaste tu contraseña?
           </Link>
         </Stack>
-
+      <p className="footer">© {year} Edward Morales. Todos los derechos reservados.</p>
       </div>
-
+            
     </div>
   );
 }

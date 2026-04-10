@@ -91,6 +91,13 @@ body {
   margin: 7px 0px 7px 0px;
 }
 
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #6b7280;
+  margin: 17px 0px 0px 0px;
+}
+
 /* =========================
    LINKS
 ========================= */

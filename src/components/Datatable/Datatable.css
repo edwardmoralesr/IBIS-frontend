@@ -72,10 +72,15 @@
 /* BUSCADOR */
 .table-controls input {
     padding: 6px 10px;
-    border: 1px solid #f1f5f9;
+    border: 1.5px solid #e5e7eb;
     border-radius: 6px;
     font-size: 13px;
     outline: none;
+    background-color: transparent;
+    color: #374151;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .table-controls input:focus {

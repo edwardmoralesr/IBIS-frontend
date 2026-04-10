@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 .input-wrapper {
     display: flex;
     flex-direction: column;
@@ -39,6 +43,11 @@
     border: none;
     outline: none;
     font-size: 14px;
+    background-color: transparent;
+    color: #374151;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .input-icon {
@@ -66,5 +75,5 @@
 
 /* hover */
 .input-eye:hover {
-    color: #111827;
+    color: #374151;
 }
