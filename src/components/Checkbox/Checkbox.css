@@ -1,0 +1,82 @@
+/* =========================
+   WRAPPER
+========================= */
+.switch-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* =========================
+   SWITCH CONTAINER
+========================= */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+/* hide default checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* =========================
+   SLIDER
+========================= */
+.slider {
+    position: absolute;
+    cursor: pointer;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: #cbd5e1;
+    border-radius: 999px;
+
+    transition: 0.3s;
+}
+
+/* circle */
+.slider::before {
+    position: absolute;
+    content: "";
+
+    height: 18px;
+    width: 18px;
+
+    left: 3px;
+    bottom: 3px;
+
+    background-color: white;
+    border-radius: 50%;
+
+    transition: 0.3s;
+}
+
+/* checked */
+.switch input:checked+.slider {
+    background-color: #2563eb;
+}
+
+/* move circle */
+.switch input:checked+.slider::before {
+    transform: translateX(20px);
+}
+
+/* disabled */
+.switch.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* label */
+.switch-label {
+    font-size: 14px;
+    color: #111827;
+}
