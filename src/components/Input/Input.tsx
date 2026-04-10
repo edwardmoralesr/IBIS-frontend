@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Eye24Regular, EyeOff24Regular } from "@fluentui/react-icons";
 import "./Input.css";
 
 type InputProps = {
@@ -24,6 +25,9 @@ export default function Input({
 }: InputProps) {
 
     const [focused, setFocused] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
+
+    const isPassword = type === "password";
 
     return (
         <div className="input-wrapper" title={tooltip}>
@@ -35,13 +39,24 @@ export default function Input({
                 {icon && <span className="input-icon">{icon}</span>}
 
                 <input
-                    type={type}
+                    type={isPassword ? (showPassword ? "text" : "password") : type}
                     placeholder={placeholder}
                     value={value}
                     onChange={(e) => onChange?.(e.target.value)}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
                 />
+
+                {/* BOTÓN PASSWORD */}
+                {isPassword && (
+                    <button
+                        type="button"
+                        className="input-eye"
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? <EyeOff24Regular /> : <Eye24Regular />}
+                    </button>
+                )}
 
             </div>
 

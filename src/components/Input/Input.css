@@ -51,3 +51,20 @@
     color: #ef4444;
     margin-top: 4px;
 }
+
+/* botón ojo */
+.input-eye {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    color: #6b7280;
+}
+
+/* hover */
+.input-eye:hover {
+    color: #111827;
+}
