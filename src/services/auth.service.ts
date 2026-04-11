@@ -9,7 +9,8 @@ export type ApiResult<T> = {
 
 export const loginRequest = async (
     Documento: string,
-    Password: string
+    Password: string,
+    Role: boolean
 ): Promise<ApiResult<LoginResponse>> => {
 
     const { apiUrl } = getConfig();
@@ -20,7 +21,7 @@ export const loginRequest = async (
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ Documento, Password }),
+            body: JSON.stringify({ Documento, Password, Role }),
         });
 
         let data;

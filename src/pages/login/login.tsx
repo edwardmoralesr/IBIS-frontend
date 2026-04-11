@@ -18,7 +18,7 @@ type Student = {
 export default function Login() {
   const year = new Date().getFullYear();
   const [loaded, setLoaded] = useState(false);
-  const [active, setActive] = useState(false);
+  const [Role, setRole] = useState(false);
   const [value, setValue] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -109,7 +109,7 @@ export default function Login() {
     setMessage("Autenticación en progreso...");
     setLoading(true);
 
-    const res = await loginRequest(Documento, Password);
+    const res = await loginRequest(Documento, Password, Role);
 
     if (res.status < 300 && res.data) {
       localStorage.setItem("token", res.data.token);
@@ -163,8 +163,8 @@ export default function Login() {
 
           <Checkbox
             label="Ingreso Docentes y Administrativos"
-            checked={active}
-            onChange={setActive}
+            checked={Role}
+            onChange={setRole}
           />
 
           {/*<Combobox
