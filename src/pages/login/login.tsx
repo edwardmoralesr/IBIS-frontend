@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { Stack, Link } from "@fluentui/react";
-import { Button, Input, Checkbox, Combobox, Datatable, Spinner } from "../../components";
+import { Button, Input, Checkbox, Combobox, Datatable, Spinner, Modal } from "../../components";
 import type { Column } from "../../components/Datatable/Datatable";
 import { PersonCircle24Regular, LockClosed24Regular, Edit24Regular, Mail24Regular, CheckmarkCircle20Color } from "@fluentui/react-icons";
 import "./login.css";
 import { loginRequest } from "../../services/auth.service";
+import { buildModalFromResponse } from "../../utils/modal";
+import type { ModalType } from "../../utils/modal";
 
 type Student = {
   id: number;
@@ -83,25 +85,41 @@ export default function Login() {
     }
   ] satisfies Column<Student>[];
 
+  type ModalState = {
+    visible: boolean;
+    type: ModalType;
+    title: string;
+    message: string;
+    showClose: boolean;
+    showAccept: boolean;
+    showCancel: boolean;
+  };
+
+  const [modal, setModal] = useState<ModalState>({
+    visible: false,
+    type: "info",
+    title: "",
+    message: "",
+    showClose: true,
+    showAccept: true,
+    showCancel: false
+  });
+
   const handleLogin = async () => {
     setMessage("Autenticación en progreso...");
     setLoading(true);
 
-    try {
-      const data = await loginRequest(Documento, Password);
+    const res = await loginRequest(Documento, Password);
 
-      // guardar token
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+    if (res.status < 300 && res.data) {
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      // redirigir
-      window.location.href = "/dashboard";
-
-    } catch (error) {
-
+      //window.location.href = "/dashboard";
     }
 
     setLoading(false);
+    setModal(buildModalFromResponse(res));
   };
 
 
@@ -166,7 +184,19 @@ export default function Login() {
           >
             Ingresar
           </Button>
+
           <Spinner visible={loading} message={message} />
+
+          <Modal
+            visible={modal.visible}
+            type={modal.type}
+            title={modal.title}
+            message={modal.message}
+            showAccept={modal.showAccept}
+            showCancel={modal.showCancel}
+            showClose={modal.showClose}
+            onClose={() => setModal({ ...modal, visible: false })}
+          />
 
           <Link href="#" className="links">
             ¿Olvidaste tu contraseña?
