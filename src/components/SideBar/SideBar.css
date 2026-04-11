@@ -1,39 +1,105 @@
+/* =========================
+   SIDEBAR BASE
+========================= */
 .sidebar {
-    width: 240px;
+    --w: 60px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: var(--w);
     height: 100vh;
+
     background: #e5e7eb;
-    /* azul oscuro Azure-like */
-    color: black;
+    color: #171717;
+
     display: flex;
     flex-direction: column;
-    padding-top: 12px;
+
+    overflow: hidden;
+
+    transition: width 0.25s ease;
+    z-index: 1000;
+
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.25);
 }
 
-/* item del menú */
+/* EXPANSIÓN */
+.sidebar:hover {
+    --w: 220px;
+}
+
+/* =========================
+   MENU ITEM
+========================= */
 .menu-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 12px 16px;
-    margin: 4px 10px;
+
+    padding: 12px 14px;
+    margin: 4px 8px;
+
     border-radius: 8px;
+
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 14px;
+    white-space: nowrap;
+
+    transition: background 0.2s ease;
 }
 
-/* hover estilo Azure */
+/* hover estilo Microsoft */
 .menu-item:hover {
     background: rgba(255, 255, 255, 0.08);
 }
 
-/* activo */
+/* =========================
+   ICONOS
+========================= */
+.icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+/* =========================
+   LABEL (TEXTO)
+========================= */
+.label {
+    opacity: 0;
+    transform: translateX(-8px);
+
+    transition: opacity 0.2s ease, transform 0.2s ease;
+
+    pointer-events: none;
+    font-size: 15px;
+    color: #171717;
+}
+
+/* mostrar label cuando sidebar está expandido */
+.sidebar:hover .label {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* =========================
+   ITEM ACTIVO (opcional)
+========================= */
 .menu-item.active {
     background: rgba(59, 130, 246, 0.2);
     border-left: 3px solid #3b82f6;
 }
 
-/* iconos alineados */
-.menu-item svg {
-    min-width: 20px;
+/* =========================
+   MICRO OPTIMIZATION
+========================= */
+.sidebar {
+    will-change: width;
+}
+
+.menu-item {
+    user-select: none;
 }

@@ -1,6 +1,6 @@
 /* contenedor topbar */
 .topbar {
-    height: 5%;
+    height: 7%;
     background: #171717;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
@@ -10,7 +10,13 @@
 
     padding: 0 20px;
     color: whitesmoke;
-    font-weight: bold;
+    font-weight: 600;
+
+    margin-left: 60px;
+    transition: margin-left 0.25s ease;
+
+    position: relative;
+    z-index: 10;
 }
 
 /* usuario */
