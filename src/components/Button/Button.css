@@ -42,12 +42,12 @@
 
 /* PRIMARY */
 .btn.primary {
-    background: #2563eb;
-    color: white;
+    background: #171717;
+    color: whitesmoke;
 }
 
 .btn.primary:hover {
-    background: #1d4ed8;
+    background: #333;
 }
 
 /* SECONDARY */
@@ -63,7 +63,7 @@
 /* DANGER */
 .btn.danger {
     background: #ef4444;
-    color: white;
+    color: #e5e7eb;
 }
 
 .btn.danger:hover {
@@ -73,7 +73,7 @@
 /* GHOST */
 .btn.ghost {
     background: transparent;
-    color: #2563eb;
+    color: #171717;
 }
 
 .btn.ghost:hover {

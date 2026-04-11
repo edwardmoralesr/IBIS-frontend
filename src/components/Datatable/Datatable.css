@@ -48,7 +48,7 @@
 
 .pagination button {
     border: none;
-    background: #2563eb;
+    background: #171717;
     color: white;
     padding: 6px 10px;
     border-radius: 6px;
@@ -84,7 +84,7 @@
 }
 
 .table-controls input:focus {
-    border-color: #2563eb;
+    border-color: #171717;
 }
 
 /* SELECT PAGE SIZE */

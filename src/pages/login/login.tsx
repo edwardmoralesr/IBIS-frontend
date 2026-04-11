@@ -7,6 +7,7 @@ import "./login.css";
 import { loginRequest } from "../../services/auth.service";
 import { buildModalFromResponse } from "../../utils/modal";
 import type { ModalType } from "../../utils/modal";
+import { useNavigate } from "react-router-dom";
 
 type Student = {
   id: number;
@@ -16,6 +17,9 @@ type Student = {
 
 
 export default function Login() {
+
+  const navigate = useNavigate();
+
   const year = new Date().getFullYear();
   const [loaded, setLoaded] = useState(false);
   const [Role, setRole] = useState(false);
@@ -115,7 +119,7 @@ export default function Login() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      //window.location.href = "/dashboard";
+      navigate("/inicio");
     }
 
     setLoading(false);

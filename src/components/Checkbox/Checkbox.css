@@ -61,7 +61,7 @@
 
 /* checked */
 .switch input:checked+.slider {
-    background-color: #2563eb;
+    background-color: #171717;
 }
 
 /* move circle */

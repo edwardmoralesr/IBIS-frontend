@@ -1,0 +1,64 @@
+/* contenedor topbar */
+.topbar {
+    height: 5%;
+    background: #171717;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 20px;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+/* usuario */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* icono usuario */
+.user-icon {
+    width: 18px;
+    height: 18px;
+    opacity: 0.9;
+}
+
+/* botón logout */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    /* 🔥 clave principal */
+
+    background: transparent;
+
+    color: whitesmoke;
+
+    padding: 6px 10px;
+    border-style: none;
+
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+
+    transition: all 0.2s ease;
+}
+
+/* icono logout */
+.logout-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* hover estilo Microsoft */
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #ffffff;
+}

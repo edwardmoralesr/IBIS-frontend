@@ -1,0 +1,40 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: whitesmoke;
+  color: #1f2937;
+}
+
+.layout {
+  display: flex;
+  height: 100vh;
+  background: #f5f7fb;
+}
+
+/* MAIN STRUCTURE */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* CONTENT AREA (tipo Azure portal) */
+.content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background: whitesmoke;
+}
+
+/* Tarjeta o bloques internos estilo Azure */
+.azure-card {
+  background: #e5e7eb;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
