@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Stack, Link } from "@fluentui/react";
-import { Button, Input, Checkbox, Combobox, Datatable } from "../../components";
+import { Button, Input, Checkbox, Combobox, Datatable, Spinner } from "../../components";
 import type { Column } from "../../components/Datatable/Datatable";
 import { PersonCircle24Regular, LockClosed24Regular, Edit24Regular, Mail24Regular, CheckmarkCircle20Color } from "@fluentui/react-icons";
 import "./login.css";
+import { loginRequest } from "../../services/auth.service";
 
 type Student = {
   id: number;
@@ -17,6 +18,10 @@ export default function Login() {
   const [loaded, setLoaded] = useState(false);
   const [active, setActive] = useState(false);
   const [value, setValue] = useState<number>(0);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [Documento, setDocumento] = useState("");
+  const [Password, setPassword] = useState("");
 
   const options = [
     { label: "Matemáticas", value: 1 },
@@ -78,6 +83,27 @@ export default function Login() {
     }
   ] satisfies Column<Student>[];
 
+  const handleLogin = async () => {
+    setMessage("Autenticación en progreso...");
+    setLoading(true);
+
+    try {
+      const data = await loginRequest(Documento, Password);
+
+      // guardar token
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      // redirigir
+      window.location.href = "/dashboard";
+
+    } catch (error) {
+
+    }
+
+    setLoading(false);
+  };
+
 
   useEffect(() => {
     setTimeout(() => setLoaded(true), 100);
@@ -101,6 +127,10 @@ export default function Login() {
             type="email"
             icon={<PersonCircle24Regular />}
             tooltip="Ingresa documento del usuario"
+            id="Documento"
+            autoFocus="true"
+            value={Documento}
+            onChange={setDocumento}
           />
 
           <Input
@@ -108,6 +138,9 @@ export default function Login() {
             placeholder="••••••••"
             type="password"
             icon={<LockClosed24Regular />}
+            id="Password"
+            value={Password}
+            onChange={setPassword}
           />
 
           <Checkbox
@@ -129,18 +162,19 @@ export default function Login() {
           <Button
             variant="primary"
             fullWidth
-            onClick={() => console.log("login")}
+            onClick={handleLogin}
           >
             Ingresar
           </Button>
+          <Spinner visible={loading} message={message} />
 
           <Link href="#" className="links">
             ¿Olvidaste tu contraseña?
           </Link>
         </Stack>
-      <p className="footer">© {year} Edward Morales. Todos los derechos reservados.</p>
+        <p className="footer">© {year} Edward Morales. Todos los derechos reservados.</p>
       </div>
-            
+
     </div>
   );
 }

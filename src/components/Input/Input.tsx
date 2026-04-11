@@ -11,6 +11,8 @@ type InputProps = {
     icon?: React.ReactNode;
     tooltip?: string;
     error?: string;
+    id: string;
+    autoFocus?: string;
 };
 
 export default function Input({
@@ -21,7 +23,9 @@ export default function Input({
     onChange,
     icon,
     tooltip,
-    error
+    error,
+    id,
+    autoFocus
 }: InputProps) {
 
     const [focused, setFocused] = useState(false);
@@ -45,6 +49,8 @@ export default function Input({
                     onChange={(e) => onChange?.(e.target.value)}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
+                    id={id}
+                    autoFocus={autoFocus == "true" ? true : false}
                 />
 
                 {/* BOTÓN PASSWORD */}
