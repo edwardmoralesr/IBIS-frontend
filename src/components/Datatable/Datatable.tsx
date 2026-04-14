@@ -48,9 +48,6 @@ export default function DataTable<T>({
         { label: "50", value: 50 },
         { label: "100", value: 100 },
         { label: "500", value: 500 },
-        { label: "1000", value: 1000 },
-        { label: "5000", value: 5000 },
-        { label: "10000", value: 10000 }
     ];
 
     // Validar página actual
@@ -153,7 +150,7 @@ export default function DataTable<T>({
                             : `Mostrando ${start}–${end} de ${total}`}
 
                         {search && total !== totalOriginal && (
-                            <> (filtrados de {totalOriginal})</>
+                            <> (Filtrados de {totalOriginal})</>
                         )}
                     </span>
 

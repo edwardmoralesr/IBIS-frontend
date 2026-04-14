@@ -2,7 +2,7 @@
    SIDEBAR BASE
 ========================= */
 .sidebar {
-    --w: 60px;
+    --w: 40px;
 
     position: fixed;
     top: 0;
@@ -27,7 +27,7 @@
 
 /* EXPANSIÓN */
 .sidebar:hover {
-    --w: 220px;
+    --w: 300px;
 }
 
 /* =========================
@@ -38,7 +38,7 @@
     align-items: center;
     gap: 12px;
 
-    padding: 12px 14px;
+    padding: 4px 3px;
     margin: 4px 8px;
 
     border-radius: 8px;
@@ -52,6 +52,7 @@
 /* hover estilo Microsoft */
 .menu-item:hover {
     background: rgba(255, 255, 255, 0.08);
+    background-color: #d3d3d3;
 }
 
 /* =========================
@@ -74,7 +75,8 @@
     transition: opacity 0.2s ease, transform 0.2s ease;
 
     pointer-events: none;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 600;
     color: #171717;
 }
 

@@ -1,5 +1,5 @@
 .table-container {
-    background: white;
+    /*background: white;*/
     border-radius: 12px;
     padding: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -19,12 +19,14 @@
     padding: 12px;
     font-size: 13px;
     color: #6b7280;
+    background-color: #f1f5f9;
 }
 
 .table td {
     padding: 12px;
     font-size: 13px;
-    border-top: 1px solid #f1f5f9;
+    border-top: 1px solid #eeeeee;
+    text-align: center;
 }
 
 .table tr:hover {
@@ -40,7 +42,7 @@
 /* PAGINACIÓN */
 .pagination {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
     margin-top: 15px;
     font-size: 13px;
@@ -50,9 +52,11 @@
     border: none;
     background: #171717;
     color: white;
-    padding: 6px 10px;
-    border-radius: 6px;
+    padding: 6px 8px;
+    border-radius: 20px;
     cursor: pointer;
+    font-size: 10px;
+    width: 23px;
 }
 
 .pagination button:disabled {
@@ -67,6 +71,7 @@
     align-items: center;
     margin-bottom: 10px;
     gap: 10px;
+    /*background-color: e5e7eb;*/
 }
 
 /* BUSCADOR */
@@ -133,6 +138,7 @@
 .pagination-info {
     color: #6b7280;
     font-size: 13px;
+    padding: 0px 10px;
 }
 
 .action-btn {
