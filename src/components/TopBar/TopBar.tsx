@@ -5,7 +5,6 @@ import "./TopBar.css";
 export default function TopBar() {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-    debugger;
 
     const logout = () => {
         localStorage.removeItem("token");
