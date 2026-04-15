@@ -4,10 +4,11 @@ import { Button, Input, Checkbox, Combobox, Datatable, Spinner, Modal } from "..
 import type { Column } from "../../components/Datatable/Datatable";
 import { PersonCircle24Regular, LockClosed24Regular, Edit20Regular, Mail20Regular, CheckmarkCircle24Regular } from "@fluentui/react-icons";
 import "../login/login.css";
-import { loginRequest } from "../../services/auth.service";
+//import { loginRequest, type ApiResult } from "../../services/auth.service";
 import { buildModalFromResponse } from "../../utils/modal";
 import type { ModalType } from "../../utils/modal";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
+//import type { LoginResponse } from "../../types/auth";
 type Student = {
     id: number;
     name: string;
@@ -100,6 +101,21 @@ export default function Inicio() {
         showAccept: true,
         showCancel: false
     });
+
+    useEffect(() => {
+        const raw = sessionStorage.getItem("loginSuccess");
+
+        if (!raw) return;
+
+        const res = JSON.parse(raw);
+
+        if (res != null) {
+            setModal(buildModalFromResponse(res));
+        }
+
+        sessionStorage.removeItem("loginSuccess");
+    }, []);
+
     return (
         <div>
 
@@ -114,7 +130,7 @@ export default function Inicio() {
                         onChange={setValue}
                         placeholder="Selecciona una materia"
                     />*/}
-                    <h2 style={{ paddingTop: 30, paddingLeft:30 }}>Inicio</h2>
+                    <h2 style={{ paddingTop: 30, paddingLeft: 30 }}>Inicio</h2>
                     <Datatable columns={columns} data={data} />
 
                     <Spinner visible={loading} message={message} />

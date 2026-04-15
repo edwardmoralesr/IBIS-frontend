@@ -2,7 +2,7 @@ export const fetchWithAuth = async (
   url: string,
   options: RequestInit = {}
 ) => {
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   const response = await fetch(url, {
     ...options,
@@ -14,8 +14,8 @@ export const fetchWithAuth = async (
   });
 
   if (response.status === 401 || response.status === 403) {
-    localStorage.removeItem("token");
-    window.location.href = "/login";
+    sessionStorage.removeItem("token");
+    window.location.href = "/";
   }
 
   return response;

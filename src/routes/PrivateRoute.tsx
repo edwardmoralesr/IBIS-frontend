@@ -1,8 +1,8 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 export default function PrivateRoute() {
-    const token = localStorage.getItem("token");
-    const menus = JSON.parse(localStorage.getItem("menus") || "[]");
+    const token = sessionStorage.getItem("token");
+    const menus = JSON.parse(sessionStorage.getItem("menus") || "[]");
     const location = useLocation();
 
     if (!token) return <Navigate to="/" replace />;

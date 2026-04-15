@@ -43,7 +43,7 @@ export const loginRequest = async (
     } catch {
         return {
             status: 500,
-            message: "Error de conexión con el servidor",
+            message: "Error procesando la información",
         };
     }
 };

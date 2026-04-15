@@ -4,7 +4,7 @@ import { icon } from "../../utils/icon";
 
 export default function Sidebar() {
   const navigate = useNavigate();
-  const menus = JSON.parse(localStorage.getItem("menus") || "[]");
+  const menus = JSON.parse(sessionStorage.getItem("menus") || "[]");
 
   return (
     <div className="sidebar">

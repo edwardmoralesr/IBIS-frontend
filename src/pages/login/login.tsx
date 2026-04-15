@@ -47,15 +47,17 @@ export default function Login() {
     const res = await loginRequest(Documento, Password, Role);
 
     if (res.status < 300 && res.data) {
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      localStorage.setItem("menus", JSON.stringify(res.data.menus));
+      sessionStorage.setItem("token", res.data.token);
+      sessionStorage.setItem("user", JSON.stringify(res.data.user));
+      sessionStorage.setItem("menus", JSON.stringify(res.data.menus));
+      sessionStorage.setItem("loginSuccess", JSON.stringify(res));
 
       navigate("/inicio");
     }
 
     setLoading(false);
-    setModal(buildModalFromResponse(res));
+    if (res.status > 300)
+      setModal(buildModalFromResponse(res));
   };
 
 
