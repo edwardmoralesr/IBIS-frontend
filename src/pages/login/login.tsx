@@ -49,8 +49,9 @@ export default function Login() {
     if (res.status < 300 && res.data) {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
+      localStorage.setItem("menus", JSON.stringify(res.data.menus));
 
-      navigate("inicio");
+      navigate("/inicio");
     }
 
     setLoading(false);
