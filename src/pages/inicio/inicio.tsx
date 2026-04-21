@@ -131,7 +131,7 @@ export default function Inicio() {
                         placeholder="Selecciona una materia"
                     />*/}
                     <h2 style={{ paddingTop: 30, paddingLeft: 30 }}>Inicio</h2>
-                    <Datatable columns={columns} data={data} />
+                    {/*<Datatable columns={columns} data={data} />*/}
 
                     <Spinner visible={loading} message={message} />
 

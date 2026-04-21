@@ -106,11 +106,11 @@
 .select-option {
     padding: 10px 12px;
     cursor: pointer;
-    background-color: #f5f7fb;
+    background-color: #f1f5f9;
 }
 
 .select-option:hover {
-    background: transparent;
+    background: #f1f5f9;
 }
 
 /* empty */

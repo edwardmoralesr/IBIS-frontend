@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Datatable.css";
 import { Combobox } from "../../components";
 
@@ -10,33 +10,59 @@ export type Column<T> = {
 
 type DataTableProps<T> = {
     columns: Column<T>[];
-    data: T[];
+    fetchData: (params: {
+        page: number;
+        pageSize: number;
+        search: string;
+    }) => Promise<{
+        data: T[];
+        total: number;
+        totalOriginal: number;
+    }>;
 };
 
 export default function DataTable<T>({
     columns,
-    data
+    fetchData
 }: DataTableProps<T>) {
+
+    const [data, setData] = useState<T[]>([]);
+    const [total, setTotal] = useState(0);
+    const [totalOriginal, setTotalOriginal] = useState(0);
 
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(5);
     const [search, setSearch] = useState("");
 
-    // FILTRO
-    const filteredData = useMemo(() => {
-        if (!search) return data;
+    const [loading, setLoading] = useState(false);
 
-        return data.filter(row =>
-            Object.values(row as Record<string, any>)
-                .some(value =>
-                    String(value).toLowerCase().includes(search.toLowerCase())
-                )
-        );
-    }, [data, search]);
+    useEffect(() => {
+        const load = async () => {
+            setLoading(true);
 
-    // PAGINACIÓN
-    const total = filteredData.length;
-    const totalOriginal = data.length;
+            try {
+                const res = await fetchData({
+                    page,
+                    pageSize,
+                    search
+                });
+
+                setData(res.data);
+                setTotal(res.total);
+                setTotalOriginal(res.totalOriginal);
+
+            } catch (error) {
+                console.error("Error cargando datos", error);
+                setData([]);
+                setTotal(0);
+            }
+
+            setLoading(false);
+        };
+
+        load();
+    }, [page, pageSize, search]);
+
     const totalPages = Math.ceil(total / pageSize);
 
     const start = total === 0 ? 0 : (page - 1) * pageSize + 1;
@@ -49,19 +75,6 @@ export default function DataTable<T>({
         { label: "100", value: 100 },
         { label: "500", value: 500 },
     ];
-
-    // Validar página actual
-    useEffect(() => {
-        if (page > totalPages && totalPages > 0) {
-            setPage(totalPages);
-        }
-    }, [totalPages, page]);
-
-    // Data paginada
-    const paginatedData = useMemo(() => {
-        const start = (page - 1) * pageSize;
-        return filteredData.slice(start, start + pageSize);
-    }, [filteredData, page, pageSize]);
 
     return (
         <div className="table-container">
@@ -99,14 +112,25 @@ export default function DataTable<T>({
 
                 <thead>
                     <tr>
-                        {columns.map((col, index) => (
-                            <th key={index}>{col.header}</th>
+                        {columns.map((col, i) => (
+                            <th key={i}>{col.header}</th>
                         ))}
                     </tr>
                 </thead>
 
                 <tbody>
-                    {paginatedData.length === 0 && (
+
+                    {/* LOADING */}
+                    {loading && (
+                        <tr>
+                            <td colSpan={columns.length} className="empty">
+                                Cargando...
+                            </td>
+                        </tr>
+                    )}
+
+                    {/* EMPTY */}
+                    {!loading && data.length === 0 && (
                         <tr>
                             <td colSpan={columns.length} className="empty">
                                 {search
@@ -116,7 +140,8 @@ export default function DataTable<T>({
                         </tr>
                     )}
 
-                    {paginatedData.map((row, i) => (
+                    {/* DATA */}
+                    {!loading && data.map((row, i) => (
                         <tr key={i}>
                             {columns.map((col, j) => (
                                 <td key={j}>

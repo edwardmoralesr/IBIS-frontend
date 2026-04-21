@@ -36,7 +36,7 @@
 .empty {
     text-align: center;
     padding: 20px;
-    color: #9ca3af;
+    color: #6b7280/*#9ca3af;*/
 }
 
 /* PAGINACIÓN */
@@ -77,7 +77,7 @@
 /* BUSCADOR */
 .table-controls input {
     padding: 6px 10px;
-    border: 1.5px solid #e5e7eb;
+    border: 1.5px solid lightgray;
     border-radius: 6px;
     font-size: 13px;
     outline: none;
@@ -89,7 +89,7 @@
 }
 
 .table-controls input:focus {
-    border-color: #171717;
+    border-color: #cbd5e1;
 }
 
 /* SELECT PAGE SIZE */
